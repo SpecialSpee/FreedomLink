@@ -1,0 +1,60 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'android_client/**'
+      - 'pc_client/client.py'
+      - 'pc_client/database.py'
+      - 'pc_client/encryption.py'
+  workflow_dispatch:  # Ручной запуск
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Install Buildozer deps
+      run: |
+        python -m pip install --upgrade pip
+        pip install buildozer cython
+    
+    - name: Install system deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          python3-pip build-essential git python3-dev \
+          ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
+          libsdl2-ttf-dev libportmidi-dev libswscale-dev \
+          libavformat-dev libavcodec-dev zlib1g-dev \
+          libgstreamer1.0 gstreamer1.0-plugins-base \
+          gstreamer1.0-plugins-good autoconf libtool pkg-config
+    
+    - name: Prepare Android client
+      run: |
+        cd android_client
+        # Создаём симлинки на общие модули
+        ln -sf ../pc_client/client.py client.py
+        ln -sf ../pc_client/database.py database.py
+        ln -sf ../pc_client/encryption.py encryption.py
+        # Копируем buildozer.spec в корень для удобства
+        cp buildozer.spec ../
+    
+    - name: Build APK
+      run: |
+        cd android_client
+        buildozer android debug
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: freedomlink-android
+        path: android_client/bin/*.apk

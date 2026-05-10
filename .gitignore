@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+*.db
+*.log
+.env
+data/
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# ============================================
+#  Buildozer / Android сборка
+# ============================================
+.buildozer/
+android_client/.buildozer/
+android_client/bin/
+*.apk
+*.aab
+*.pyo
+
+# ============================================
+# 🔒 Пользовательские данные и настройки
+# ============================================
+vault/
+users.json
+settings.json
+kivy_logs.txt
+
+# ============================================
+# 💻 Системные файлы (Windows/macOS/Linux)
+# ============================================
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,31 @@
+{
+  "name": "✨ Young & Wild",
+  "appearance": {
+    "bg_color": "#fff0f5",
+    "frame_color": "#ffe4e1",
+    "sidebar_color": "#fff5ee",
+    "accent_red": "#ff69b4",
+    "accent_orange": "#ffa07a",
+    "terminal_green": "#98fb98",
+    "text_primary": "#2f2f2f",
+    "text_secondary": "#696969",
+    "button_hover": "#ffb6c1",
+    "border_color": "#ff69b4",
+    "header_bg": "#ffe4e1",
+    "input_bg": "#fffafa"
+  },
+  "shapes": {
+    "button_corner_radius": 25,
+    "button_height": 48,
+    "entry_border_width": 2
+  },
+  "fonts": {
+    "main": "Comic Sans MS",
+    "title": "Segoe UI",
+    "size_small": 11,
+    "size_normal": 13,
+    "size_large": 18
+  },
+  "logo": "logo.png",
+  "logo_size": [128, 128]
+}

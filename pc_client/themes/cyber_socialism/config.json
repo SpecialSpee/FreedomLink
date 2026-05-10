@@ -1,0 +1,24 @@
+{
+  "name": "☭ Cyber Socialism",
+  "appearance": {
+    "bg_color": "#0a0a0a",
+    "frame_color": "#1a1a1a",
+    "sidebar_color": "#0f0f0f",
+    "accent_red": "#8a0303",
+    "accent_orange": "#ff4500",
+    "terminal_green": "#203f20",
+    "text_primary": "#ffffff",
+    "text_secondary": "#8A8A8A",
+    "button_hover": "#880404",
+    "border_color": "#8a0303",
+    "header_bg": "#1a0000",
+    "input_bg": "#0f0f0f"
+  },
+  "shapes": {
+    "button_corner_radius": 3,
+    "button_height": 38
+  },
+  "fonts": {
+    "main": "Courier New"
+  }
+}

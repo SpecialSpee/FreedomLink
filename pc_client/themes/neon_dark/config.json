@@ -1,0 +1,30 @@
+{
+  "name": "🌃 Neon Dark",
+  "appearance": {
+    "bg_color": "#0d0d0d",
+    "frame_color": "#1a1a2e",
+    "sidebar_color": "#16213e",
+    "accent_red": "#e94560",
+    "accent_orange": "#ff6b6b",
+    "terminal_green": "#0f3460",
+    "text_primary": "#ffffff",
+    "text_secondary": "#a0a0a0",
+    "button_hover": "#c93756",
+    "border_color": "#e94560",
+    "header_bg": "#0f3460",
+    "input_bg": "#1a1a2e"
+  },
+  "shapes": {
+    "button_corner_radius": 12,
+    "button_height": 42
+  },
+  "fonts": {
+    "main": "Segoe UI",
+    "title": "Segoe UI",
+    "size_small": 10,
+    "size_normal": 12,
+    "size_large": 16
+  },
+  "logo": "logo.png",
+  "logo_size": [128, 128]
+}

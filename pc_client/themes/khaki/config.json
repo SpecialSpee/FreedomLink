@@ -1,0 +1,31 @@
+{
+  "name": "🪖 Khaki Ops",
+  "appearance": {
+    "bg_color": "#2f2f2a",
+    "frame_color": "#3a3a35",
+    "sidebar_color": "#33332e",
+    "accent_red": "#556b2f",
+    "accent_orange": "#8fbc8f",
+    "terminal_green": "#90ee90",
+    "text_primary": "#f0f0e6",
+    "text_secondary": "#a0a090",
+    "button_hover": "#6b8e23",
+    "border_color": "#556b2f",
+    "header_bg": "#3a3a30",
+    "input_bg": "#2a2a25"
+  },
+  "shapes": {
+    "button_corner_radius": 4,
+    "button_height": 38,
+    "entry_border_width": 2
+  },
+  "fonts": {
+    "main": "Lucida Console",
+    "title": "Segoe UI",
+    "size_small": 9,
+    "size_normal": 11,
+    "size_large": 14
+  },
+  "logo": "logo.png",
+  "logo_size": [88, 88]
+}

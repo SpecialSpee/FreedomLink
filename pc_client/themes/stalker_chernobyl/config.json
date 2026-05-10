@@ -1,0 +1,31 @@
+{
+  "name": "☢️ S.T.A.L.K.E.R.",
+  "appearance": {
+    "bg_color": "#1a1612",
+    "frame_color": "#2a2420",
+    "sidebar_color": "#1f1b17",
+    "accent_red": "#8b4513",
+    "accent_orange": "#cd853f",
+    "terminal_green": "#9acd32",
+    "text_primary": "#e8e0d5",
+    "text_secondary": "#8b7355",
+    "button_hover": "#a0522d",
+    "border_color": "#8b4513",
+    "header_bg": "#2a2018",
+    "input_bg": "#241f1a"
+  },
+  "shapes": {
+    "button_corner_radius": 0,
+    "button_height": 36,
+    "entry_border_width": 3
+  },
+  "fonts": {
+    "main": "Courier New",
+    "title": "Consolas",
+    "size_small": 8,
+    "size_normal": 10,
+    "size_large": 13
+  },
+  "logo": "logo.png",
+  "logo_size": [128, 128]
+}

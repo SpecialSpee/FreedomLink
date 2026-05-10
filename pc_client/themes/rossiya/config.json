@@ -1,0 +1,31 @@
+{
+  "name": "🇷🇺 Россия",
+  "appearance": {
+    "bg_color": "#ffffff",
+    "frame_color": "#f5f5f5",
+    "sidebar_color": "#fafafa",
+    "accent_red": "#d52b1e",
+    "accent_orange": "#0039a6",
+    "terminal_green": "#008000",
+    "text_primary": "#000000",
+    "text_secondary": "#555555",
+    "button_hover": "#b22222",
+    "border_color": "#d52b1e",
+    "header_bg": "#0039a6",
+    "input_bg": "#f8f8f8"
+  },
+  "shapes": {
+    "button_corner_radius": 6,
+    "button_height": 40,
+    "entry_border_width": 2
+  },
+  "fonts": {
+    "main": "Times New Roman",
+    "title": "Georgia",
+    "size_small": 10,
+    "size_normal": 12,
+    "size_large": 16
+  },
+  "logo": "logo.png",
+  "logo_size": [128, 128]
+}
