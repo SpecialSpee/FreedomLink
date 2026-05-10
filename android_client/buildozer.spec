@@ -7,7 +7,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,db,json,enc
 
 version = 1.7.0
-requirements = python3,kivy,cryptography,openssl,libffi,android,plyer,websockets
+requirements = python3,kivy,cryptography,openssl,android,plyer,websockets
 
 orientation = portrait
 fullscreen = 0
