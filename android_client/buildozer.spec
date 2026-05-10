@@ -22,8 +22,5 @@ android.app_bundle = False
 android.archs = arm64-v8a,armeabi-v7a
 
 [buildozer]
-log_level = 2
-warn_on_root = 1
+p4a.local-recipes = ./local_recipes
 p4a.branch = develop
-# ✅ Патч для libffi
-p4a.local-recipes = ./patches
