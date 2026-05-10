@@ -1,0 +1,21 @@
+--- a/recipes/libffi/recipe.py
++++ b/recipes/libffi/recipe.py
+@@ -1,6 +1,7 @@
+ from pythonforandroid.recipe import Recipe
+ from pythonforandroid.util import current_directory
++import os
+ 
+ class LibffiRecipe(Recipe):
+     version = '3.4.4'
+@@ -10,6 +11,11 @@ class LibffiRecipe(Recipe):
+     def build_arch(self, arch):
+         env = self.get_recipe_env(arch)
+         with current_directory(self.get_build_dir(arch.arch)):
++            # Fix for Ubuntu 24.04 / autoconf 2.72 compatibility
++            env['CFLAGS'] += ' -Wno-error=implicit-function-declaration'
++            env['LDFLAGS'] += ' -Wl,--no-as-needed'
++            # Suppress obsolete macro warnings that cause failures
++            env['WARNINGS'] = 'none'
+             if not self.is_patched(arch.arch):
+                 self.apply_patch('libffi-3.4.4-android.patch', arch.arch)
+                 self.patch_linker_flags(arch)
