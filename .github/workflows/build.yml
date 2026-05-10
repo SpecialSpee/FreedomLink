@@ -8,7 +8,8 @@ on:
       - 'pc_client/client.py'
       - 'pc_client/database.py'
       - 'pc_client/encryption.py'
-  workflow_dispatch:  # Ручной запуск
+      - '.github/workflows/**'  # <--- ДОБАВЬ ЭТУ СТРОКУ
+  workflow_dispatch:
 
 jobs:
   build:

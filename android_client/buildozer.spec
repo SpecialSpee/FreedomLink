@@ -25,4 +25,4 @@ android.archs = arm64-v8a,armeabi-v7a
 log_level = 2
 warn_on_root = 1
 # ✅ КРИТИЧНО: тянет свежий python-for-android с фиксом libffi + NDK 25
-p4a.branch = master
+p4a.branch = develop
