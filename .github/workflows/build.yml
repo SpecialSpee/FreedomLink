@@ -21,7 +21,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.11'  # ✅ Синхрон с p4a master
     
     - name: Install System Dependencies
       run: |
@@ -31,12 +31,13 @@ jobs:
           ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
           libsdl2-ttf-dev libportmidi-dev libswscale-dev \
           libavformat-dev libavcodec-dev zlib1g-dev \
-          autoconf libtool pkg-config
+          autoconf libtool pkg-config \
+          libffi-dev libssl-dev
     
     - name: Install Python Dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install buildozer "cython<3.0"  # ✅ Исправлено: добавлены кавычки
+        python -m pip install --upgrade pip setuptools wheel
+        pip install buildozer "cython<3.0"
     
     - name: Prepare Android Client
       run: |
@@ -49,19 +50,22 @@ jobs:
       env:
         ANDROID_HOME: /usr/local/lib/android/sdk
         ANDROID_NDK_HOME: /home/runner/.buildozer/android/platform/android-ndk-r25b
+        LIBLDFLAGS: "-L/home/runner/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib"
+        CFLAGS: "-I/home/runner/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include"
         CI: true
       run: |
         cd android_client
         
-        # Очистка кэша
-        rm -rf .buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius
-        rm -rf .buildozer/android/packages/pyjnius*
+        # 🔥 Полная очистка кэша — критично после смены версий
+        rm -rf .buildozer/android/platform/build-arm64-v8a_armeabi-v7a
+        rm -rf .buildozer/android/packages/cryptography*
+        rm -rf .buildozer/android/packages/openssl*
         
-        # Запуск сборки
+        # Сборка
         buildozer -v android debug
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: freedomlink-android
-        path: android_client/bin/*.apkы
+        name: freedomlink-android-full
+        path: android_client/bin/*.apk
