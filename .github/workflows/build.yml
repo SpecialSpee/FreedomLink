@@ -25,7 +25,7 @@ jobs:
         # Создаём симлинки на общие модули
         ln -sf ../pc_client/client.py client.py
         ln -sf ../pc_client/database.py database.py
-        ln -sf ../pc_client/encryption.py encryption.py
+        
         
         # 🔥 Очистка кэша перед сборкой
         rm -rf .buildozer
