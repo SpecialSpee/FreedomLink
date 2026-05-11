@@ -8,7 +8,7 @@ on:
       - 'pc_client/client.py'
       - 'pc_client/database.py'
       - 'pc_client/encryption.py'
-      - '.github/workflows/**'  # <--- ДОБАВЬ ЭТУ СТРОКУ
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
@@ -31,29 +31,37 @@ jobs:
     - name: Install system deps
       run: |
         sudo apt-get update
-        sudo apt-get install -f -y  # 🛠️ Чиним "held broken packages" перед установкой
+        sudo apt-get install -f -y
         sudo apt-get install -y \
           python3-pip build-essential git python3-dev \
           ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
           libsdl2-ttf-dev libportmidi-dev libswscale-dev \
           libavformat-dev libavcodec-dev zlib1g-dev \
           autoconf libtool pkg-config
-        # ❌ Убрали libgstreamer* — они ломают apt на GitHub Runner и не нужны для Android
     
     - name: Prepare Android client
       run: |
         cd android_client
-        # Создаём симлинки на общие модули
         ln -sf ../pc_client/client.py client.py
         ln -sf ../pc_client/database.py database.py
         ln -sf ../pc_client/encryption.py encryption.py
-        # Копируем buildozer.spec в корень для удобства
-        cp buildozer.spec ../
     
     - name: Build APK
       run: |
         cd android_client
-        buildozer android debug
+        
+        # 🔥 Очистка кэша pyjnius/cython
+        rm -rf .buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius
+        rm -rf .buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/hostpython3
+        rm -rf .buildozer/android/packages/pyjnius*
+        
+        # ✅ Фиксим версию Cython
+        pip install "cython<3.0"
+        
+        # Сборка
+        buildozer -v android debug
+      env:
+        ANDROID_HOME: /usr/local/lib/android/sdk
     
     - name: Upload APK
       uses: actions/upload-artifact@v4

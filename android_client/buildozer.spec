@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas,db,json,enc
 
 version = 1.7.0
 # ✅ Рабочий набор для Python 3.10 + Ubuntu 22.04
-requirements = python3,kivy==2.3.0,cryptography,openssl,android,plyer,websockets,cython<3.0,pyjnius==1.6.1
+requirements = python3,kivy==2.2.1,cryptography==41.0.7,openssl==1.1.1w,android,plyer,websockets==11.0.3,cython<3.0,pyjnius==1.6.1
 
 orientation = portrait
 fullscreen = 0
