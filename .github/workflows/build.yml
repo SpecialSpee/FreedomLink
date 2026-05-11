@@ -23,23 +23,22 @@ jobs:
       with:
         python-version: '3.10'
     
-    - name: Install Buildozer deps
-      run: |
-        python -m pip install --upgrade pip
-        pip install buildozer cython
-    
-    - name: Install system deps
+    - name: Install System Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -f -y
         sudo apt-get install -y \
-          python3-pip build-essential git python3-dev \
+          build-essential git python3-dev \
           ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
           libsdl2-ttf-dev libportmidi-dev libswscale-dev \
           libavformat-dev libavcodec-dev zlib1g-dev \
           autoconf libtool pkg-config
     
-    - name: Prepare Android client
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install buildozer cython<3.0
+    
+    - name: Prepare Android Client
       run: |
         cd android_client
         ln -sf ../pc_client/client.py client.py
@@ -47,24 +46,20 @@ jobs:
         ln -sf ../pc_client/encryption.py encryption.py
     
     - name: Build APK
+      # 🔥 ВАЖНО: Передаем ANDROID_NDK_HOME через env, а не через export в run
+      env:
+        ANDROID_HOME: /usr/local/lib/android/sdk
+        ANDROID_NDK_HOME: /home/runner/.buildozer/android/platform/android-ndk-r25b
+        CI: true
       run: |
         cd android_client
         
-        # 🔥 Очистка кэша pyjnius/cython
+        # Очистка кэша перед сборкой
         rm -rf .buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius
-        rm -rf .buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/hostpython3
         rm -rf .buildozer/android/packages/pyjnius*
         
-        # ✅ Фиксим версию Cython
-        pip install "cython<3.0"
-        
-        # ✅ КРИТИЧНО: OpenSSL требует эту переменную
-        export ANDROID_NDK_HOME=$ANDROID_NDK
-
-        # Сборка
+        # Запуск сборки
         buildozer -v android debug
-      env:
-        ANDROID_HOME: /usr/local/lib/android/sdk
     
     - name: Upload APK
       uses: actions/upload-artifact@v4
