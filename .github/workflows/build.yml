@@ -30,12 +30,10 @@ jobs:
         # 🔥 Очистка кэша перед сборкой
         rm -rf .buildozer
         
-        # ✅ Сборка от имени пользователя внутри контейнера (нужно для прав доступа)
-        # -v: verbose, android debug: цель сборки
-        buildozer -v android debug
+        # ✅ Авто-подтверждение запуска от root + сборка
+        yes | buildozer -v android debug
         
       env:
-        # Передаём переменные, если они нужны для твоего кода
         CI: true
 
     - name: Upload APK
