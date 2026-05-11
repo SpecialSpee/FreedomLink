@@ -58,6 +58,9 @@ jobs:
         # ✅ Фиксим версию Cython
         pip install "cython<3.0"
         
+        # ✅ КРИТИЧНО: OpenSSL требует эту переменную
+        export ANDROID_NDK_HOME=$ANDROID_NDK
+
         # Сборка
         buildozer -v android debug
       env:
